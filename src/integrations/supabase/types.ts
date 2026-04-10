@@ -14,7 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      voice_recordings: {
+        Row: {
+          created_at: string
+          description: string | null
+          facility: string
+          file_name: string
+          file_url: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          facility: string
+          file_name: string
+          file_url: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          facility?: string
+          file_name?: string
+          file_url?: string
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
