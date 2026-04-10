@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { supabase } from "@/integrations/supabase/client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -58,29 +58,20 @@ const Index = () => {
 
     setUploading(true);
     try {
+      // Prepare form data for backend
       const ext = file.name.split(".").pop();
-      const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const formData = new FormData();
+      formData.append("file", file, file.name);
+      formData.append("description", description);
+      formData.append("facility", selectedFacility);
 
-      const { error: storageError } = await supabase.storage
-        .from("audio")
-        .upload(path, file);
+      // POST to FastAPI backend
+      const response = await fetch("http://localhost:8000/upload", {
+        method: "POST",
+        body: formData,
+      });
 
-      if (storageError) throw storageError;
-
-      const { data: urlData } = supabase.storage
-        .from("audio")
-        .getPublicUrl(path);
-
-      const { error: dbError } = await supabase
-        .from("voice_recordings")
-        .insert({
-          file_name: file.name,
-          file_url: urlData.publicUrl,
-          description,
-          facility: selectedFacility,
-        });
-
-      if (dbError) throw dbError;
+      if (!response.ok) throw new Error("Upload failed");
 
       setSuccess(true);
       setFile(null);
