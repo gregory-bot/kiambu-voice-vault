@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, Mic, CheckCircle2 } from "lucide-react";
+import bgImage from "@/assets/bg.jpg";
 
 const KIAMBU_FACILITIES = [
   "Kiambu Level 5 Hospital",
@@ -94,33 +95,36 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div
+      className="h-screen overflow-hidden bg-cover bg-center flex items-center justify-center p-4"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
-            <Mic className="w-7 h-7 text-primary" />
+        <div className="text-center mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2">
+            <Mic className="w-6 h-6 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Voice Upload</h1>
-          <p className="text-muted-foreground text-sm mt-1">
+          <h1 className="text-xl font-bold text-foreground">Voice Upload</h1>
+          <p className="text-muted-foreground text-xs mt-0.5">
             Upload facility voice recordings
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-card rounded-xl border border-border p-6 space-y-5 shadow-sm"
+          className="bg-card/95 backdrop-blur-sm rounded-xl border border-border p-4 space-y-3 shadow-sm"
         >
           {/* File Upload */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Audio File
             </label>
             <div
               onClick={() => fileRef.current?.click()}
-              className="border-2 border-dashed border-border rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 transition-colors"
+              className="border-2 border-dashed border-border rounded-lg p-3 text-center cursor-pointer hover:border-primary/50 transition-colors"
             >
-              <Upload className="w-8 h-8 mx-auto text-muted-foreground mb-2" />
-              <p className="text-sm text-muted-foreground">
+              <Upload className="w-6 h-6 mx-auto text-muted-foreground mb-1" />
+              <p className="text-xs text-muted-foreground">
                 {file ? file.name : "Tap to select MP3 or audio file"}
               </p>
             </div>
@@ -135,21 +139,21 @@ const Index = () => {
 
           {/* Description */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Description
             </label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Short description of the recording..."
-              rows={3}
-              className="resize-none"
+              rows={2}
+              className="resize-none text-sm min-h-[60px]"
             />
           </div>
 
           {/* Facility */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Facility
             </label>
             <Select value={facility} onValueChange={setFacility}>
