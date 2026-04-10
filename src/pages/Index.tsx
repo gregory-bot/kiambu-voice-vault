@@ -65,8 +65,8 @@ const Index = () => {
       formData.append("description", description);
       formData.append("facility", selectedFacility);
 
-      // POST to FastAPI backend
-      const response = await fetch("http://localhost:8000/upload", {
+      // POST to FastAPI backend on Render
+      const response = await fetch("https://voice-vault-6g37.onrender.com/upload/", {
         method: "POST",
         body: formData,
       });
