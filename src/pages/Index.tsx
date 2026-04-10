@@ -153,7 +153,7 @@ const Index = () => {
 
           {/* Facility */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Facility
             </label>
             <Select value={facility} onValueChange={setFacility}>
