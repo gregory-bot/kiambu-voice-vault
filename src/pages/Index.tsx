@@ -112,19 +112,19 @@ const Index = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-card rounded-xl border border-border p-6 space-y-5 shadow-sm"
+          className="bg-card/95 backdrop-blur-sm rounded-xl border border-border p-4 space-y-3 shadow-sm"
         >
           {/* File Upload */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Audio File
             </label>
             <div
               onClick={() => fileRef.current?.click()}
-              className="border-2 border-dashed border-border rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 transition-colors"
+              className="border-2 border-dashed border-border rounded-lg p-3 text-center cursor-pointer hover:border-primary/50 transition-colors"
             >
-              <Upload className="w-8 h-8 mx-auto text-muted-foreground mb-2" />
-              <p className="text-sm text-muted-foreground">
+              <Upload className="w-6 h-6 mx-auto text-muted-foreground mb-1" />
+              <p className="text-xs text-muted-foreground">
                 {file ? file.name : "Tap to select MP3 or audio file"}
               </p>
             </div>
@@ -139,15 +139,15 @@ const Index = () => {
 
           {/* Description */}
           <div>
-            <label className="text-sm font-medium text-foreground mb-1.5 block">
+            <label className="text-xs font-medium text-foreground mb-1 block">
               Description
             </label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Short description of the recording..."
-              rows={3}
-              className="resize-none"
+              rows={2}
+              className="resize-none text-sm min-h-[60px]"
             />
           </div>
 
