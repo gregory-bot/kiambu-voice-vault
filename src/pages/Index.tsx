@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, Mic, CheckCircle2 } from "lucide-react";
+import bgImage from "@/assets/bg.jpg";
 
 const KIAMBU_FACILITIES = [
   "Kiambu Level 5 Hospital",
